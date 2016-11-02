@@ -1,73 +1,93 @@
-
+$(function(){
+//Called when search button is clicked
+var title =null;
 $("#submitButton").on('click',function(){
-	 var pages = 0;
+
+	//Pages available and limit of the content on each page
+	var pages = 0;
     var limit = 5;
-    var offset=0;
-	var title=$("#movieTitle").val();
+    //Fetching the value for title
+	title=$("#movieTitle").val();
 	var details= $("#displayDetails");
 	var poster= $("#poster");
+	//Emptying the entire details which is already displayed
 	details.empty();
 	poster.empty();
-	var $movieSearch = $("#searchtitle");
-	$movieSearch.empty();
-	var $movieShow = $("#movie");
-	$movieShow.remove();
-	 var $title=$("#movieTitle");
-	 var titlevalue=$title.val();
+	var movieSearch = $("#searchtitle");
+	movieSearch.empty();
+	$('#pagin').empty();
 	 var flag=false;
+	 //Calling OMDB using ajax	
 	$.ajax({
 		type:'GET',
 		url:'http://www.omdbapi.com/?s='+title,
 		success: function(data)
-		{
-			 var currentOffset = 1;
-             var index = 1;          
-			$.each(data["Search"],function(i,movie){
-				{
+		{       
+			$.each(data["Search"],function(i,movie)
+				{ 
 				    pages++;
-                    if(currentOffset > offset && index <= limit)
-					{  		
-						$movieSearch.append('<li><button type="button" class="movieItem btn btn-link" data-id="'+movie.imdbID+'">' +movie.Title+'</button></li>');
-						flag=true;
-						 index++;
-						 currentOffset++;
-					}
-			}
+					$("#searchtitle").append('<li class="item"><button type="button" class="movieItem btn btn-link" data-id="'+movie.imdbID+'">' +movie.Title+'</button></li>');
+					flag=true;	
 			});
+			//If movie not found alert is displayed
 			if(!flag)
 			{
-
 				alert('No Movies Found');
 				offset=0;
 			}
+			//Pages will be set according to the limit
 			if(flag)
 			{
-				  pages = pages/limit;
-                  for( var btn=0; btn < pages; btn++)
-                  {
-                   $movieSearch.append('<input type="button" class="pageNumber" value="'+(parseInt(btn)+1)+'" data-offset="'+(parseInt(btn))+'">');
-                  }
-
+                  var pageCount =  pages/limit;
+                 for(var i = 0 ; i<pageCount;i++)
+                 {
+                   $('#pagin').addClass('text-center');
+                   $('#pagin').append('<li><a href="#">'+(i+1)+'</a></li> ');
+                 }
+                 //Finding the current page
+                  $('#pagin li').first().find('a').addClass('current');
+                 showPage = function(page) {
+                    $('.item ').hide();
+                    $('.item ').each(function(n) {
+                          if (n >= limit * (page - 1) && n < limit * page)
+                            {
+                               $(this).show();
+                       
+                            }
+                    });        
+                }
+                showPage(1);
+                $('#pagin li a').click(function() {
+                    $('#pagin li a').removeClass("current");
+                    $(this).addClass('current');
+                    showPage(parseInt($(this).text())) 
+                });
 			}
 		},
+		//Error function will be called incase of any server problem 
 		error:function(){
 			document.location.href="error.html";
 		}
 	});
 });
 
-
+//Called when particular movie item is clicked
 $('#searchtitle').delegate('.movieItem','click',function(){
-	var $movie=$('#searchtitle');
+	$('#pagin').empty();
+	var movie=$('#searchtitle');
 	var details= $("#displayDetails");
 	var poster= $("#poster");
+	//Emptying the entire details which is already displayed
 	var displayMovie=$(this).attr('data-id');
-	$movie.empty();
+	movie.empty();
+	//Searching each data which matches the title entered by user 
 	$.ajax({
 		type:'GET',
-		url:'http://www.omdbapi.com/?s=title',
+		url:'http://www.omdbapi.com/?s='+title,
 		success: function(data)
 		{
+			$('#searchtitle').html('');
+			//Display the movie details based on the search accordingly
 			 $.each(data["Search"],function(i,movie){
 				if(movie.imdbID===displayMovie)
 				{	
@@ -76,64 +96,10 @@ $('#searchtitle').delegate('.movieItem','click',function(){
 			}
 		});
 		},
+		//Error function will be called incase of any server problem 
 		error:function(){
 			alert('error');
 		}
 	});
 });
-
-
-  /* $("#searchtitle").delegate('.pageNumber','click',function()
-    {
-        var thisButton = $(this);
-        var limit=5;
-        var title=$("#movieTitle").val();
-        var flag=false;
-        console.log(thisButton.attr('data-offset'));
-        $("#searchtitle").empty();
-
-                offset = parseInt(thisButton.attr('data-offset')) * limit;
-            pages = 0;
- 
-               $.ajax({
-		type:'GET',
-		url:'http://www.omdbapi.com/?s='+title,
-		success: function(data)
-		{
-			 var currentOffset = 1;
-             var index = 1;          
-			$.each(data["Search"],function(i,movie){
-				{
-				    pages++;
-                    if(currentOffset > offset && index <= limit)
-					{  		
-						$movieSearch.append('<li><button type="button" class="movieItem btn btn-link" data-id="'+movie.imdbID+'">' +movie.Title+'</button></li>');
-						flag=true;
-						 index++;
-						 currentOffset++;
-					}
-			}
-			});
-			if(!flag)
-			{
-
-				alert('No Movies Found');
-				offset=0;
-			}
-			if(flag)
-			{
-				  pages = pages/limit;
-                  for( var btn=0; btn < pages; btn++)
-                  {
-                   $movieSearch.append('<input type="button" class="pageNumber" value="'+(parseInt(btn)+1)+'" data-offset="'+(parseInt(btn))+'">');
-                  }
-
-			}
-		},
-		error:function(){
-			document.location.href="error.html";
-		}
-	});
-          
 });
-*/
