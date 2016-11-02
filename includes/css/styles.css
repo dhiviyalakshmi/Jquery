@@ -1,0 +1,264 @@
+/*
+
+My Custom CSS
+=============
+
+Author:  Dhiviyalakshmi
+Updated: October 2016
+*/
+
+/*  Global Styles */
+
+  .well p ,.well a,.navbar a,#more_info li{
+    font-family: 'Trirong', serif;
+  }  
+
+  .well h1,.panel-title,#more_info h2,#activities h2{
+    font-family: 'Bungee Inline', cursive;
+    color:#0040ff;
+  }
+  #more_info p
+  {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 20px;
+  }
+#more_info h4,#more_info h3,#activities h3,#activities2 h3
+  {
+   
+  font-family: 'Ruslan Display', cursive;
+  color:  #ff5050;
+  font-size: 25px;
+}
+#bigCallout
+{
+ 
+    margin-top: 20px;
+    text-align: center;
+
+}
+body
+{
+  background-color: #ccddff; 
+
+}
+#features img{
+  margin:auto;
+}
+
+#rooms img{
+  margin:auto;
+}
+
+.thumbnail
+{
+  margin:0 20px 10px 0;
+  
+}
+
+.aboutus
+{
+  margin-top: 40px;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 20px;
+  color:   #990033;
+}
+
+.aboutus h1{
+  font-family: 'Bungee Inline', cursive;
+  font-size: 40px;
+  color:   #990033;
+}
+
+#team h2
+{
+  font-family: 'Bungee Inline', cursive;
+  font-size: 25px;
+  color:   #990033;
+}
+
+#team h3
+{
+  font-family: 'Bungee Inline', cursive;
+  font-size: 20px;
+  color:   #990033;
+}
+
+
+/* Layout */
+
+#features
+{
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Bree Serif', serif;
+  font-size: 20px;
+
+}
+
+
+.feature:hover
+{
+  border:5px solid #0040ff;
+  
+}
+
+.act:hover{
+  border-radius: 50%;
+  border:solid #0040ff;
+}
+
+.panel-heading
+{
+  margin-top: 10px;
+}
+ 
+ 
+
+/*  Navbar */
+   
+   .navbar-brand
+   {
+      padding: 0px 2px;
+   }
+
+   .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+   
+/* Carousel */
+
+   #myCarousel
+   {
+      margin-top: 60px;
+   }
+   #myCarousel .item
+   {
+      height:400px;
+   }
+
+   .carousel-caption h4
+   {
+      font-size: 40px;
+      color:red;
+     font-family: 'Pacifico', cursive;
+   }
+   #slide1
+   {
+      background:url('../../images/hotelslide3m.png') top center no-repeat;
+   }
+
+   #slide2
+   {
+      background: url('../../images/hotelslide2m.png') top center no-repeat;
+   }
+
+   #slide3
+   {
+       background: url('../../images/hotelslide1m.png') top center no-repeat;
+   }
+
+    #slide4
+   {
+       background: url('../../images/hotelslide4m.png') top center no-repeat;
+   }
+
+
+/* Media Queries  */
+
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+	
+   #myCarousel
+   {
+      margin-top: 60px;
+   }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+   #myCarousel .item
+   {
+      height:310px;
+   }
+    #myCarousel
+   {
+      margin-top: 60px;
+   }
+   .carousel-caption h4
+   {
+      font-size: 22px;
+      color:red;
+   }
+   #slide1
+   {
+      background:url('../../images/hotelslide3s.png') top center no-repeat;
+   }
+
+   #slide2
+   {
+      background:url('../../images/hotelslide2s.png') top center no-repeat;
+   }
+
+   #slide3
+   {
+       background:url('../../images/hotelslide1s.png') top center no-repeat;
+   }
+	
+   #slide4
+   {
+       background:url('../../images/hotelslide4s.png') top center no-repeat;
+   }
+
+}
+
+/*footer*/
+footer
+ {
+  background: #333;
+  color:#eee;
+  font-size: 20px;
+  padding:10px;
+ 
+
+ }
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+    #myCarousel .item
+   {
+      height:500px;
+   }
+    #myCarousel
+   {
+      margin-top: 60px;
+   }
+    .carousel-caption h4
+   {
+      font-size: 32px;
+      color:red;
+   }
+
+   #slide1
+   {
+      background: url('../../images/hotelslide3l.jpg') top center no-repeat;
+   }
+
+   #slide2
+   {
+      background: url('../../images/hotelslide2l.jpg') top center no-repeat;
+   }
+
+   #slide3
+   {
+       background: url('../../images/hotelslide1l.jpg') top center no-repeat;
+   }
+
+   #slide4
+   {
+       background: url('../../images/hotelslide4l.jpg') top center no-repeat;
+   }
+   
+	
+}

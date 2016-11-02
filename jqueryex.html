@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IMDB Movie Search</title>
+    <!--linking of external styleshheets-->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="includes/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link href="css/stylesheet.css" rel="stylesheet">	
+</head>
+<body class="fullPage">
+	<div class="col-sm-12" id="header">
+        <h1>Movie Search</h1>    
+  </div>  
+  <div class="wrap main">
+    <!--Title to search-->
+    <form class="col_4" id="form">
+			 <input type="text" name="text" placeholder="Search" id="movieTitle">
+      <button type="button" class="btn btn-default" id="submitButton"><span class="glyphicon glyphicon-search"></span>
+      </button>
+    </form>
+    <div class="container">
+    <!--To Display Poster-->
+    <div class="col-sm-5" id="poster">
+    </div>
+    <!-- To display Movie Details-->
+    <div class="col-sm-7" id="details"> 
+        <ul id='movie'></ul>
+    <!-- To display only search titles-->
+        <ul id="searchtitle"> </ul>
+    <!--To display movie details-->
+			   <p id="displayDetails"></p>
+    </div>
+    </div>
+  </div>
+<!--Linking  of javaScript-->
+<script type="text/javascript" src="js/jquery310.js"></script>
+<script type="text/javascript" src="js/jqueryex.js"></script>
+</body>
+</html>
